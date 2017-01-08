@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: match-rw
+  labels:
+    app: match-rw
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: match-rw
+  template:
+    metadata:
+      labels:
+        app: match-rw
+        version: "latest"
+    spec:
+      containers:
+      - name: match-rw
+        image: peteclarkio/match-rw:latest
+        ports:
+        - name: http
+          containerPort: 8080
