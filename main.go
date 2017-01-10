@@ -17,12 +17,12 @@ func main() {
 
 	server := &http.Server{
 		Handler: r,
-		Addr:    ":8080",
+		Addr:    ":80",
 
 		WriteTimeout: 60 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
 
-	logrus.Info("Starting server on localhost:8080")
+	logrus.Info("Starting server on localhost:80")
 	server.ListenAndServe()
 }
