@@ -1,13 +1,13 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: match-rw
-  labels:
-    app: match-rw
+   name: match-rw-service
+   labels:
+      app: match-rw-service
 spec:
-  type: LoadBalancer
-  ports:
-    - port: 80
-      targetPort: 8080
-  selector:
-    app: match-rw
+   type: LoadBalancer
+   ports:
+      - port: 80
+        targetPort: http
+   selector:
+      app: match-rw
