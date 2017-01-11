@@ -7,6 +7,7 @@ RUN apk add --update bash \
   && apk --update add git go ca-certificates \
   && cd /source/ \
   && export GOPATH=/gopath \
+  && echo "{\"version\": \"$(git describe --tag --always 2> /dev/null)\", \"time\": \"$(date -u +%Y%m%d%H%M%S)\", \"repository\": \"$(git config --get remote.origin.url)\", \"revision\": \"$(git rev-parse HEAD)\", \"go\": \"$(go version)\"}" > /version.json \
   && REPO_PATH="github.com/peteclark-io/match-rw/" \
   && mkdir -p $GOPATH/src/${REPO_PATH} \
   && cp -r /source/* $GOPATH/src/${REPO_PATH} \

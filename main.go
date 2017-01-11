@@ -6,14 +6,13 @@ import (
 
 	"github.com/Sirupsen/logrus"
 	"github.com/gorilla/mux"
+	"github.com/peteclark-io/match-rw/resources"
 )
 
 func main() {
 	r := mux.NewRouter()
-
-	r.HandleFunc("/__ping", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("pong"))
-	}).Methods("GET")
+	r.HandleFunc("/__ping", resources.Ping()).Methods("GET")
+	r.HandleFunc("/__version", resources.Version()).Methods("GET")
 
 	server := &http.Server{
 		Handler: r,
