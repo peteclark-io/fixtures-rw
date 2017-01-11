@@ -32,5 +32,6 @@ spec:
    type: LoadBalancer
    ports:
       - port: 80
+        targetPort: http
    selector:
       app: match-rw
