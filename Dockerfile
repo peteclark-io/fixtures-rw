@@ -17,6 +17,6 @@ RUN apk add --update bash \
   && apk del go git \
   && rm -rf $GOPATH /var/cache/apk/*
 
-EXPOSE 8080
+EXPOSE 80
 
 CMD [ "/match-rw" ]
