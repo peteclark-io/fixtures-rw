@@ -17,7 +17,7 @@ spec:
       spec:
          containers:
             -  name: match-rw
-               image: peteclarkio/match-rw:v0.0.0
+               image: peteclarkio/match-rw:v0.0.1
                ports:
                   -  name: http
                      containerPort: 80
