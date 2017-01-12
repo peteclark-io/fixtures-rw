@@ -5,11 +5,11 @@ machine:
 dependencies:
    override:
       - docker info
-      - docker build --rm=false -t peteclarkio/match-rw .
+      - docker build --rm=false -t peteclarkio/fixtures-rw .
 
 test:
    override:
-      - docker run -d -p 9200:80 peteclarkio/match-rw; sleep 10
+      - docker run -d -p 9200:80 peteclarkio/fixtures-rw; sleep 10
       - curl --retry 10 --retry-delay 5 -v http://localhost:9200/__ping
 
 deployment:
@@ -17,10 +17,10 @@ deployment:
       tag: /v[0-9]+(\.[0-9]+)*/
       commands:
          - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
-         - docker build --rm=false -t peteclarkio/match-rw:${CIRCLE_TAG} .
-         - docker push peteclarkio/match-rw:${CIRCLE_TAG}
+         - docker build --rm=false -t peteclarkio/fixtures-rw:${CIRCLE_TAG} .
+         - docker push peteclarkio/fixtures-rw:${CIRCLE_TAG}
    hub:
       branch: master
       commands:
          - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
-         - docker push peteclarkio/match-rw
+         - docker push peteclarkio/fixtures-rw

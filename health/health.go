@@ -39,7 +39,7 @@ func Aggregator(checks ...func() CheckResult) func() interface{} {
 			}
 		}
 
-		return AggregateResult{"match-rw", time.Now(), overall, results}
+		return AggregateResult{"fixtures-rw", time.Now(), overall, results}
 	}
 }
 

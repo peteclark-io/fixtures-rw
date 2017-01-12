@@ -1,23 +1,23 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-   name: match-rw
+   name: fixtures-rw
    labels:
-      app: match-rw
+      app: fixtures-rw
 spec:
    replicas: 2
    selector:
       matchLabels:
-         app: match-rw
+         app: fixtures-rw
    template:
       metadata:
          labels:
-            app: match-rw
+            app: fixtures-rw
             version: "latest"
       spec:
          containers:
-            -  name: match-rw
-               image: peteclarkio/match-rw:v0.0.1
+            -  name: fixtures-rw
+               image: peteclarkio/fixtures-rw:v0.0.1
                ports:
                   -  name: http
                      containerPort: 80
@@ -25,13 +25,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-   name: match-rw
+   name: fixtures-rw
    labels:
-      app: match-rw
+      app: fixtures-rw
 spec:
    type: LoadBalancer
    ports:
       - port: 80
         targetPort: http
    selector:
-      app: match-rw
+      app: fixtures-rw
