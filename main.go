@@ -6,8 +6,8 @@ import (
 
 	"github.com/Sirupsen/logrus"
 	"github.com/gorilla/mux"
-	"github.com/peteclark-io/fixtures-rw/health"
 	"github.com/peteclark-io/fixtures-rw/resources"
+	"github.com/peteclark-io/health-api"
 )
 
 func main() {
