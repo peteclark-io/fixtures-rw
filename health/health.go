@@ -11,7 +11,7 @@ type Runner interface {
 type CheckResult struct {
 	Name        string        `json:"name"`
 	Severity    int           `json:"severity"`
-	Healthy     bool          `json:"healthy"`
+	Ok          bool          `json:"ok"`
 	Description string        `json:"description"`
 	Impact      string        `json:"impact"`
 	CheckOutput string        `json:"checkOutput"`
@@ -34,7 +34,7 @@ func Aggregator(checks ...func() CheckResult) func() interface{} {
 		for _, check := range checks {
 			r := check()
 			results = append(results, r)
-			if !r.Healthy {
+			if !r.Ok {
 				overall = false
 			}
 		}
@@ -49,7 +49,7 @@ func Ping() func() CheckResult {
 		return CheckResult{
 			Name:        "ping",
 			Severity:    1,
-			Healthy:     true,
+			Ok:          true,
 			Description: "Simple ping check.",
 			Impact:      "No impact.",
 			CheckOutput: "pong",
