@@ -16,11 +16,20 @@ func Ping() func(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// Version returns info.
+// Version returns general build info.
 func Version() func(w http.ResponseWriter, r *http.Request) {
 	version, _ := ioutil.ReadFile("/version.json")
 
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Write(version)
+	}
+}
+
+// Health runs healthchecks and returns results.
+func Health(runner func() interface{}) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		results := runner()
+		enc := json.NewEncoder(w)
+		enc.Encode(results)
 	}
 }
