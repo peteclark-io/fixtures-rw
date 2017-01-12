@@ -4,7 +4,7 @@ COPY . /source/
 
 RUN apk add --update bash \
   && ls -lta /source/ \
-  && apk --update add git go ca-certificates \
+  && apk --update add git ca-certificates \
   && cd /source/ \
   && export GOPATH=/gopath \
   && echo "{\"version\": \"$(git describe --tag --always 2> /dev/null)\", \"built\": \"$(date -u +%Y%m%d%H%M%S)\", \"repository\": \"$(git config --get remote.origin.url)\", \"revision\": \"$(git rev-parse HEAD)\", \"go\": \"$(go version)\"}" > /version.json \
