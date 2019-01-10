@@ -12,7 +12,7 @@ import (
 
 func main() {
 	ping := health.Ping()
-	runner := health.Aggregator(ping)
+	runner := health.Aggregator("fixtures-rw", ping)
 
 	r := mux.NewRouter()
 	r.HandleFunc("/__ping", resources.Ping()).Methods("GET")
